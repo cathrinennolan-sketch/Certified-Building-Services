@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Certified Building Services</title>
+    <meta name="description" content="Get in touch with Certified Building Services for structural engineering solutions in the Atlanta metro area.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">Certified Building Services<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#projects" style="cursor: default;">Projects ▾</a>
+                <ul class="dropdown-content">
+                    <li><a href="residential.html">Residential</a></li>
+                    <li><a href="forensic.html">Forensic</a></li>
+                    <li><a href="industrial.html">Industrial</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero homepage-hero" style="min-height: 50vh;">
+            <div class="hero-content">
+                <h1 class="hero-title">Contact Us<span>.</span></h1>
+                <p class="hero-subtitle">Get in touch to discuss your residential, commercial, industrial, or forensic engineering needs.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="contact-grid">
+                <div class="contact-info-container">
+                    <h3 style="font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1.5rem;">Let's discuss your project</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.05rem;">
+                        Certified Building Services provides structural engineering solutions across Coweta County and the broader Atlanta metropolitan area. Reach out to schedule inspections, consultations, or request design proposals.
+                    </p>
+                    
+                    <div class="info-card">
+                        <h4>Office Location</h4>
+                        <p>Coweta County, Georgia</p>
+                    </div>
+                    
+                    <div class="info-card" style="margin-top: 1.5rem;">
+                        <h4>Service Area</h4>
+                        <p>Atlanta Metropolitan Area and surrounding Georgia counties</p>
+                    </div>
+
+                    <div class="info-card" style="margin-top: 1.5rem;">
+                        <h4>Office Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                        <p>Saturday - Sunday: Closed</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-container" style="border: 1px solid var(--border-color); border-radius: 4px; padding: 2.5rem;">
+                    <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will contact you shortly.');">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 555-5555">
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" name="project-type" class="form-control" style="background-image: none;">
+                                <option value="residential">Residential Structural Engineering</option>
+                                <option value="forensic">Forensic Inspection / Investigation</option>
+                                <option value="industrial">Industrial Facilities</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Describe your engineering project or request..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 4px; padding: 1rem;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt" style="margin-top: 0;">
+            <h3 class="section-title">Direct Contact</h3>
+            <div class="contact-simple">
+                <div class="contact-item-simple">
+                    <span class="contact-label-simple">Phone</span>
+                    <a href="tel:7704868226" class="contact-link-simple">(770) 486-8226</a>
+                </div>
+                <div class="contact-item-simple">
+                    <span class="contact-label-simple">Email</span>
+                    <a href="mailto:mike.cbssouth@gmail.com" class="contact-link-simple">mike.cbssouth@gmail.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Certified Building Services. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

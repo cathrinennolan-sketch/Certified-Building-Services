@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Portfolio</title>
+    <meta name="description" content="Professional portfolio of a Software Engineer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">Certified Building Services<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#projects" style="cursor: default;">Projects ▾</a>
+                <ul class="dropdown-content">
+                    <li><a href="residential.html">Residential</a></li>
+                    <li><a href="forensic.html">Forensic</a></li>
+                    <li><a href="industrial.html">Industrial</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero homepage-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Certified Building Services<span>.</span></h1>
+                <p class="hero-subtitle">Professional structural engineering services ensuring the safety, stability, and durability of properties across Georgia.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Our Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-alt">
+            <h3 class="section-title">Project Categories</h3>
+            <div class="project-grid">
+                <a href="residential.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <img class="project-card-image" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=85" alt="Residential building structural blueprint">
+                        <div class="project-content">
+                            <h4>Residential</h4>
+                            <p>Custom homes, multi-family housing, and residential renovations ensuring structural integrity and safety.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="forensic.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <img class="project-card-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=85" alt="Forensic engineering structural schematic">
+                        <div class="project-content">
+                            <h4>Forensic</h4>
+                            <p>Expert structural failure analysis, damage assessments, and expert witness services for property disputes.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="industrial.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <img class="project-card-image" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=85" alt="Industrial steel frame blueprint design">
+                        <div class="project-content">
+                            <h4>Industrial</h4>
+                            <p>Warehouses, manufacturing facilities, and heavy-duty structural framework analysis and design.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section">
+            <h3 class="section-title">What Our Clients Say</h3>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <p><em>"Mike Nolan’s very knowledgeable and explained our issue very well, we understood exactly what we needed to do. He is also a real nice guy. Would highly recommend him. My father always told me if you have a basement issue always call a structural engineer first… I’m so glad I did!"</em></p>
+                        <h4 style="margin-top: 1.5rem; font-size: 1.1rem;">- Katie Wright</h4>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <p><em>"Thank you Mike for your evaluation of my storage shed!! I highly recommend Certified Building Services if you ever need an engineer. He is prompt and just a great guy to work with. Thanks so much!!"</em></p>
+                        <h4 style="margin-top: 1.5rem; font-size: 1.1rem;">- Cardinalfan</h4>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <p><em>"Great guy to work with. He is very talented in his work."</em></p>
+                        <h4 style="margin-top: 1.5rem; font-size: 1.1rem;">- Brett Betsill</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt">
+            <h3 class="section-title">Contact</h3>
+            <div class="contact-simple">
+                <div class="contact-item-simple">
+                    <span class="contact-label-simple">Phone</span>
+                    <a href="tel:7704868226" class="contact-link-simple">(770) 486-8226</a>
+                </div>
+                <div class="contact-item-simple">
+                    <span class="contact-label-simple">Email</span>
+                    <a href="mailto:mike.cbssouth@gmail.com" class="contact-link-simple">mike.cbssouth@gmail.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Certified Building Services. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
