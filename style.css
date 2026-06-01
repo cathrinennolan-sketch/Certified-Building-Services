@@ -832,6 +832,51 @@ textarea.form-control {
     }
 }
 
+/* Work In Progress Overlay */
+.wip-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wip-content {
+    background: var(--accent-color);
+    color: white;
+    padding: 2.5rem 4rem;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: rotate(-5deg);
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.wip-content:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.wip-content h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.wip-content p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
 /* Footer */
 footer {
     text-align: center;

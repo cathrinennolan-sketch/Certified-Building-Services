@@ -56,4 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Check if form was submitted successfully (backend redirect)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('status') === 'success') {
+        alert('Thank you for reaching out! Your message has been sent successfully.');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
 });

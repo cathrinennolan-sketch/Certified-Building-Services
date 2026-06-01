@@ -17,6 +17,105 @@ try {
         $response = $context.Response
 
         $urlPath = $request.Url.LocalPath
+        
+        # Handle contact form POST submissions
+        if ($request.HttpMethod -eq "POST" -and $urlPath -eq "/submit-contact") {
+            try {
+                $reader = New-Object System.IO.StreamReader($request.InputStream, [System.Text.Encoding]::UTF8)
+                $postData = $reader.ReadToEnd()
+                $reader.Close()
+                
+                # Parse url-encoded form data (e.g. name=John+Doe&email=john%40example.com)
+                $params = @{}
+                $postData.Split('&') | ForEach-Object {
+                    $parts = $_.Split('=')
+                    if ($parts.Length -eq 2) {
+                        $key = [System.Uri]::UnescapeDataString($parts[0].Replace('+', ' '))
+                        $val = [System.Uri]::UnescapeDataString($parts[1].Replace('+', ' '))
+                        $params[$key] = $val
+                    }
+                }
+                
+                $name = $params["name"]
+                $email = $params["email"]
+                $phone = $params["phone"]
+                $projectType = $params["project-type"]
+                $message = $params["message"]
+
+                $subject = "New Contact Form Submission from $name"
+                $bodyText = "Name: $name`nEmail: $email`nPhone: $phone`nProject Type: $projectType`n`nMessage:`n$message"
+
+                # Check for SendGrid API Key in local .env file first, then environment
+                $sendgridKey = $null
+                $envFile = Join-Path (Get-Location) ".env"
+                if (Test-Path $envFile) {
+                    Get-Content $envFile | ForEach-Object {
+                        $line = $_.Trim()
+                        if ($line -and -not $line.StartsWith("#")) {
+                            $parts = $line.Split('=', 2)
+                            if ($parts.Length -eq 2 -and $parts[0].Trim() -eq "SENDGRID_API_KEY") {
+                                $sendgridKey = $parts[1].Trim().Trim('"').Trim("'")
+                            }
+                        }
+                    }
+                }
+                
+                if (-not $sendgridKey) {
+                    $sendgridKey = [System.Environment]::GetEnvironmentVariable("SENDGRID_API_KEY", "User")
+                }
+                if (-not $sendgridKey) {
+                    $sendgridKey = [System.Environment]::GetEnvironmentVariable("SENDGRID_API_KEY", "Machine")
+                }
+                
+                if ($sendgridKey) {
+                    $headers = @{
+                        "Authorization" = "Bearer $sendgridKey"
+                        "Content-Type" = "application/json"
+                    }
+                    $payload = @{
+                        personalizations = @(
+                            @{
+                                to = @(
+                                    @{ email = "michaelnolan@certifiedbuildingservices.org" }
+                                )
+                            }
+                        )
+                        from = @{
+                            email = "michaelnolan@certifiedbuildingservices.org" # Must be a verified sender in your SendGrid account
+                        }
+                        subject = $subject
+                        content = @(
+                            @{
+                                type = "text/plain"
+                                value = $bodyText
+                            }
+                        )
+                    } | ConvertTo-Json -Depth 10 -Compress
+                    
+                    $res = Invoke-RestMethod -Uri "https://api.sendgrid.com/v3/mail/send" -Method Post -Headers $headers -Body $payload
+                    Write-Host "Email sent successfully via SendGrid API to michaelnolan@certifiedbuildingservices.org" -ForegroundColor Green
+                } else {
+                    # Fallback local log if SendGrid is not configured yet
+                    $logFile = Join-Path (Get-Location) "form-submissions.log"
+                    $logEntry = "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] Contact Submission:`n$bodyText`n--------------------`n"
+                    [System.IO.File]::AppendAllText($logFile, $logEntry)
+                    Write-Host "SendGrid API key not found. Logged submission to $logFile" -ForegroundColor Yellow
+                }
+                
+                # Redirect back to contact page with success parameter
+                $response.StatusCode = 302
+                $response.RedirectLocation = "/contact.html?status=success"
+            } catch {
+                Write-Error $_
+                $response.StatusCode = 500
+                $errorBytes = [System.Text.Encoding]::UTF8.GetBytes("500 Internal Server Error: " + $_.Exception.Message)
+                $response.ContentLength64 = $errorBytes.Length
+                $response.OutputStream.Write($errorBytes, 0, $errorBytes.Length)
+            }
+            $response.OutputStream.Close()
+            continue
+        }
+
         if ($urlPath -eq "/") {
             $urlPath = "/index.html"
         }
