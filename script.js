@@ -29,7 +29,20 @@ function changeSlide(carouselId, direction) {
     slides[activeIndex].classList.remove('active');
     
     activeIndex = (activeIndex + direction + slides.length) % slides.length;
-    slides[activeIndex].classList.add('active');
+    const nextSlide = slides[activeIndex];
+    nextSlide.classList.add('active');
+    
+    // Update caption if data-caption is defined on the next slide
+    const wrapper = carousel.closest('.framed-photo-gallery-wrapper');
+    if (wrapper) {
+        const captionElem = wrapper.querySelector('.photo-caption');
+        if (captionElem) {
+            const newCaption = nextSlide.getAttribute('data-caption');
+            if (newCaption) {
+                captionElem.textContent = newCaption;
+            }
+        }
+    }
 }
 
 // Initialize elements
